@@ -1,0 +1,65 @@
+{
+  "kind": "singleType",
+  "collectionName": "chain_pharmacy_solutions",
+  "info": {
+    "singularName": "chain-pharmacy-solution",
+    "pluralName": "chain-pharmacy-solutions",
+    "displayName": "ChainPharmacySolution"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroPharmacyChain": {
+      "type": "component",
+      "component": "solution.hero-pharmacy-chain",
+      "repeatable": false
+    },
+    "pharmacyChainChallengesSection": {
+      "type": "component",
+      "component": "solution.challenges-section",
+      "repeatable": false
+    },
+    "featureBenefitsSection": {
+      "type": "component",
+      "component": "solution.commitment-section",
+      "repeatable": false
+    },
+    "operationsStandardization": {
+      "type": "component",
+      "component": "solution.operations-standardization",
+      "repeatable": false
+    },
+    "introductionFeatures": {
+      "type": "component",
+      "component": "solution.solution-card",
+      "repeatable": false
+    },
+    "featureOverview": {
+      "type": "component",
+      "component": "solution.pharmacy-chain-feature-overview",
+      "repeatable": false
+    },
+    "Carousel": {
+      "type": "component",
+      "component": "solution.solution-section",
+      "repeatable": false
+    },
+    "operationsStandardizationBottom": {
+      "type": "component",
+      "component": "solution.operations-standardization",
+      "repeatable": false
+    },
+    "PharmacyFeedback": {
+      "type": "component",
+      "component": "solution.challenges-chain-section",
+      "repeatable": false
+    },
+    "ctaSection": {
+      "type": "component",
+      "component": "solution.cta-section",
+      "repeatable": false
+    }
+  }
+}

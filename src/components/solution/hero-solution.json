@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_solution_hero_solutions",
+  "info": {
+    "displayName": "HeroSolution"
+  },
+  "options": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "component": "shared.hero-section",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

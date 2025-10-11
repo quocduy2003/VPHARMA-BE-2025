@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_solution_feature_benefits_sections",
+  "info": {
+    "displayName": "FeatureBenefitsSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "contents": {
+      "type": "component",
+      "component": "solution.tab-content",
+      "repeatable": true
+    },
+    "ctaButton": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

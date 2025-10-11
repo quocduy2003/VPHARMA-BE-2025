@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_solution_feature_sections",
+  "info": {
+    "displayName": "FeatureSection"
+  },
+  "options": {},
+  "attributes": {
+    "featureGrid": {
+      "type": "component",
+      "component": "solution.feature-grid",
+      "repeatable": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tabs": {
+      "type": "component",
+      "component": "solution.tabs",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

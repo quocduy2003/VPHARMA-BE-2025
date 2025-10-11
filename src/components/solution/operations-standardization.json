@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_solution_operations_standardizations",
+  "info": {
+    "displayName": "OperationsStandardization"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "contents": {
+      "type": "component",
+      "component": "solution.tab-content",
+      "repeatable": true
+    },
+    "ctaButton": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_solution_hero_pharmacy_chains",
+  "info": {
+    "displayName": "HeroPharmacyChain"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "text"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "alt": {
+      "type": "string"
+    },
+    "video": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "files",
+        "videos"
+      ]
+    },
+    "ctaButton": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

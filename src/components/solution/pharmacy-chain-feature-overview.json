@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_solution_pharmacy_chain_feature_overviews",
+  "info": {
+    "displayName": "PharmacyChainFeatureOverview"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "ctaButton": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": false
+    },
+    "contentCards": {
+      "type": "component",
+      "component": "solution.feature-grid",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

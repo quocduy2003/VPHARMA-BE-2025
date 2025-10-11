@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_solution_challenges_sections",
+  "info": {
+    "displayName": "ChallengesSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "challengesCards": {
+      "type": "component",
+      "component": "solution.tab-content",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

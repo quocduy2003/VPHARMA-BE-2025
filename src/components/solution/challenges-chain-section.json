@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_solution_challenges_chain_sections",
+  "info": {
+    "displayName": "ChallengesChainSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "card": {
+      "type": "component",
+      "component": "shared.card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

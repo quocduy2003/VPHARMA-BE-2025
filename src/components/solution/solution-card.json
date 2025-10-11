@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_solution_solution_cards",
+  "info": {
+    "displayName": "SolutionCard"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "titleButton": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "introductionCards": {
+      "type": "component",
+      "component": "solution.tab-content",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

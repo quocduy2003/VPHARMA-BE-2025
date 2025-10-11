@@ -1,0 +1,55 @@
+{
+  "kind": "singleType",
+  "collectionName": "independent_pharmacy_solutions",
+  "info": {
+    "singularName": "independent-pharmacy-solution",
+    "pluralName": "independent-pharmacy-solutions",
+    "displayName": "IndependentPharmacySolution"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroSection": {
+      "type": "component",
+      "component": "solution.hero-solution",
+      "repeatable": false
+    },
+    "featureSection": {
+      "type": "component",
+      "component": "solution.feature-section",
+      "repeatable": false
+    },
+    "featureBenefitsSection": {
+      "type": "component",
+      "component": "solution.feature-benefits-section",
+      "repeatable": false
+    },
+    "featureShowcaseSection": {
+      "type": "component",
+      "component": "solution.feature-showcase-section",
+      "repeatable": false
+    },
+    "solutionSection": {
+      "type": "component",
+      "component": "solution.solution-section",
+      "repeatable": false
+    },
+    "testimonialSection": {
+      "type": "component",
+      "component": "solution.testimonial-section",
+      "repeatable": false
+    },
+    "CommitmentSection": {
+      "type": "component",
+      "component": "solution.commitment-section",
+      "repeatable": false
+    },
+    "CTASection": {
+      "type": "component",
+      "component": "solution.cta-section",
+      "repeatable": false
+    }
+  }
+}

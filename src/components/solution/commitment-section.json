@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_solution_commitment_sections",
+  "info": {
+    "displayName": "CommitmentSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "desription": {
+      "type": "text"
+    },
+    "contents": {
+      "type": "component",
+      "component": "solution.tab-content",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

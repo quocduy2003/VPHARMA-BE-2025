@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_blog_blogs",
+  "info": {
+    "displayName": "Heading"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "H1",
+        "H2",
+        "H3"
+      ]
+    },
+    "anchor": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
