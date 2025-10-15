@@ -1,5 +1,31 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AboutStorySection extends Struct.ComponentSchema {
+  collectionName: 'components_about_story_sections';
+  info: {
+    displayName: 'StorySection';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+    eyebrow: Schema.Attribute.String;
+    items: Schema.Attribute.Component<'shared.title', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface AboutValuesSection extends Struct.ComponentSchema {
+  collectionName: 'components_about_values_sections';
+  info: {
+    displayName: 'ValuesSection';
+  };
+  attributes: {
+    valuesSection: Schema.Attribute.Component<
+      'solution.commitment-section',
+      false
+    >;
+  };
+}
+
 export interface BlogBlog extends Struct.ComponentSchema {
   collectionName: 'components_blog_blogs';
   info: {
@@ -69,13 +95,13 @@ export interface FooterLink extends Struct.ComponentSchema {
 export interface SharedCard extends Struct.ComponentSchema {
   collectionName: 'components_shared_cards';
   info: {
-    displayName: 'BrandCard';
+    displayName: 'BrandReviewCard';
   };
   attributes: {
     address: Schema.Attribute.Text;
     alt: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images' | 'videos' | 'audios' | 'files'>;
-    title: Schema.Attribute.String;
+    name: Schema.Attribute.String;
   };
 }
 
@@ -86,6 +112,17 @@ export interface SharedCtaButton extends Struct.ComponentSchema {
   };
   attributes: {
     link: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedFaqSection extends Struct.ComponentSchema {
+  collectionName: 'components_shared_faq_sections';
+  info: {
+    displayName: 'FAQSection';
+  };
+  attributes: {
+    questions: Schema.Attribute.Relation<'oneToMany', 'api::question.question'>;
     title: Schema.Attribute.String;
   };
 }
@@ -194,6 +231,29 @@ export interface SharedSubMenu extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedTestimonialSection extends Struct.ComponentSchema {
+  collectionName: 'components_shared_testimonial_sections';
+  info: {
+    displayName: 'TestimonialSection';
+  };
+  attributes: {
+    brandTestimonials: Schema.Attribute.Component<'shared.card', false>;
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedTitle extends Struct.ComponentSchema {
+  collectionName: 'components_shared_titles';
+  info: {
+    displayName: 'Title';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SolutionChallengesChainSection extends Struct.ComponentSchema {
   collectionName: 'components_solution_challenges_chain_sections';
   info: {
@@ -224,8 +284,10 @@ export interface SolutionCommitmentSection extends Struct.ComponentSchema {
     displayName: 'CommitmentSection';
   };
   attributes: {
-    contents: Schema.Attribute.Component<'solution.tab-content', true>;
-    desription: Schema.Attribute.Text;
+    alt: Schema.Attribute.String;
+    contents: Schema.Attribute.Component<'shared.title', true>;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String;
   };
 }
@@ -321,6 +383,37 @@ export interface SolutionHeroSolution extends Struct.ComponentSchema {
   };
 }
 
+export interface SolutionIndependentSolutionCards
+  extends Struct.ComponentSchema {
+  collectionName: 'components_solution_independent_solution_cards';
+  info: {
+    displayName: 'IndependentSolutionCards';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SolutionIndependentSolutionSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_solution_independent_solution_sections';
+  info: {
+    displayName: 'IndependentSolutionSection';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    independentSolutionCards: Schema.Attribute.Component<
+      'solution.independent-solution-cards',
+      true
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SolutionOperationsStandardization
   extends Struct.ComponentSchema {
   collectionName: 'components_solution_operations_standardizations';
@@ -347,28 +440,15 @@ export interface SolutionPharmacyChainFeatureOverview
   };
 }
 
-export interface SolutionSolutionCard extends Struct.ComponentSchema {
-  collectionName: 'components_solution_solution_cards';
+export interface SolutionSolutionSection extends Struct.ComponentSchema {
+  collectionName: 'components_solution_solution_sections';
   info: {
     displayName: 'SolutionCard';
   };
   attributes: {
+    alt: Schema.Attribute.String;
     description: Schema.Attribute.Text;
-    introductionCards: Schema.Attribute.Component<'solution.tab-content', true>;
-    link: Schema.Attribute.String;
-    title: Schema.Attribute.String;
-    titleButton: Schema.Attribute.String;
-  };
-}
-
-export interface SolutionSolutionSection extends Struct.ComponentSchema {
-  collectionName: 'components_solution_solution_sections';
-  info: {
-    displayName: 'SolutionSection';
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    images: Schema.Attribute.Component<'shared.media', true>;
+    image: Schema.Attribute.Media<'files' | 'images'>;
     title: Schema.Attribute.String;
   };
 }
@@ -416,6 +496,8 @@ export interface SolutionTestimonialSection extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'about.story-section': AboutStorySection;
+      'about.values-section': AboutValuesSection;
       'blog.blog': BlogBlog;
       'blog.image': BlogImage;
       'blog.paragraph': BlogParagraph;
@@ -424,6 +506,7 @@ declare module '@strapi/strapi' {
       'footer.link': FooterLink;
       'shared.card': SharedCard;
       'shared.cta-button': SharedCtaButton;
+      'shared.faq-section': SharedFaqSection;
       'shared.featuresitems': SharedFeaturesitems;
       'shared.hero-section': SharedHeroSection;
       'shared.link-item': SharedLinkItem;
@@ -432,6 +515,8 @@ declare module '@strapi/strapi' {
       'shared.seo': SharedSeo;
       'shared.social': SharedSocial;
       'shared.sub-menu': SharedSubMenu;
+      'shared.testimonial-section': SharedTestimonialSection;
+      'shared.title': SharedTitle;
       'solution.challenges-chain-section': SolutionChallengesChainSection;
       'solution.challenges-section': SolutionChallengesSection;
       'solution.commitment-section': SolutionCommitmentSection;
@@ -442,9 +527,10 @@ declare module '@strapi/strapi' {
       'solution.feature-showcase-section': SolutionFeatureShowcaseSection;
       'solution.hero-pharmacy-chain': SolutionHeroPharmacyChain;
       'solution.hero-solution': SolutionHeroSolution;
+      'solution.independent-solution-cards': SolutionIndependentSolutionCards;
+      'solution.independent-solution-section': SolutionIndependentSolutionSection;
       'solution.operations-standardization': SolutionOperationsStandardization;
       'solution.pharmacy-chain-feature-overview': SolutionPharmacyChainFeatureOverview;
-      'solution.solution-card': SolutionSolutionCard;
       'solution.solution-section': SolutionSolutionSection;
       'solution.tab-content': SolutionTabContent;
       'solution.tabs': SolutionTabs;

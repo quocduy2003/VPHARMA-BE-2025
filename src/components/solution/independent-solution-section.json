@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_solution_independent_solution_sections",
+  "info": {
+    "displayName": "IndependentSolutionSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "independentSolutionCards": {
+      "type": "component",
+      "component": "solution.independent-solution-cards",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

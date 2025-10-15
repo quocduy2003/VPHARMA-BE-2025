@@ -1,11 +1,11 @@
 {
   "collectionName": "components_shared_cards",
   "info": {
-    "displayName": "BrandCard"
+    "displayName": "BrandReviewCard"
   },
   "options": {},
   "attributes": {
-    "title": {
+    "name": {
       "type": "string"
     },
     "address": {

@@ -8,18 +8,26 @@
     "description": "Write about yourself and the content you create"
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
     "title": {
       "type": "string"
+    },
+    "description": {
+      "type": "text"
     },
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "shared.media",
-        "shared.quote"
+        "solution.testimonial-section",
+        "about.values-section",
+        "about.story-section",
+        "solution.cta-section"
       ]
     }
   }

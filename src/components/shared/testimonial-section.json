@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_testimonial_sections",
+  "info": {
+    "displayName": "TestimonialSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "brandTestimonials": {
+      "type": "component",
+      "component": "shared.card",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

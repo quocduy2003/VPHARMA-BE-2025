@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_solution_commitment_sections",
+  "collectionName": "components_solution_independent_solution_cards",
   "info": {
-    "displayName": "CommitmentSection"
+    "displayName": "IndependentSolutionCards"
   },
   "options": {},
   "attributes": {
@@ -11,20 +11,21 @@
     "description": {
       "type": "text"
     },
+    "ctaButton": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": false
+    },
     "image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
-        "images"
+        "images",
+        "files"
       ]
     },
     "alt": {
       "type": "string"
-    },
-    "contents": {
-      "type": "component",
-      "component": "shared.title",
-      "repeatable": true
     }
   },
   "config": {}

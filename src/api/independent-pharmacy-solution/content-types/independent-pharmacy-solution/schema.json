@@ -31,9 +31,9 @@
       "component": "solution.feature-showcase-section",
       "repeatable": false
     },
-    "solutionSection": {
+    "independentSolutionSection": {
       "type": "component",
-      "component": "solution.solution-section",
+      "component": "solution.independent-solution-section",
       "repeatable": false
     },
     "testimonialSection": {
@@ -41,14 +41,19 @@
       "component": "solution.testimonial-section",
       "repeatable": false
     },
-    "CommitmentSection": {
+    "commitmentSection": {
       "type": "component",
       "component": "solution.commitment-section",
       "repeatable": false
     },
-    "CTASection": {
+    "ctaSection": {
       "type": "component",
       "component": "solution.cta-section",
+      "repeatable": false
+    },
+    "faqSection": {
+      "type": "component",
+      "component": "shared.faq-section",
       "repeatable": false
     }
   }

@@ -107,43 +107,6 @@ export interface AdminApiTokenPermission extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface AdminAuditLog extends Struct.CollectionTypeSchema {
-  collectionName: 'strapi_audit_logs';
-  info: {
-    displayName: 'Audit Log';
-    pluralName: 'audit-logs';
-    singularName: 'audit-log';
-  };
-  options: {
-    draftAndPublish: false;
-    timestamps: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    action: Schema.Attribute.String & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    date: Schema.Attribute.DateTime & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::audit-log'> &
-      Schema.Attribute.Private;
-    payload: Schema.Attribute.JSON;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
-  };
-}
-
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -419,13 +382,22 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     singularName: 'about';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<['shared.media', 'shared.quote']>;
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'solution.testimonial-section',
+        'about.values-section',
+        'about.story-section',
+        'solution.cta-section',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    eyebrow: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'> &
       Schema.Attribute.Private;
@@ -544,7 +516,7 @@ export interface ApiBlogCategoryBlogCategory
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -600,12 +572,17 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
   };
   attributes: {
     author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    blocks: Schema.Attribute.DynamicZone<['shared.seo']>;
     blog_category: Schema.Attribute.Relation<
       'manyToOne',
       'api::blog-category.blog-category'
     >;
-    content: Schema.Attribute.RichText;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     coverImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -621,6 +598,7 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -689,10 +667,6 @@ export interface ApiChainPharmacySolutionChainPharmacySolution
       'solution.hero-pharmacy-chain',
       false
     >;
-    introductionFeatures: Schema.Attribute.Component<
-      'solution.solution-card',
-      false
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -716,6 +690,45 @@ export interface ApiChainPharmacySolutionChainPharmacySolution
       false
     >;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCustomerPageCustomerPage extends Struct.SingleTypeSchema {
+  collectionName: 'customer_pages';
+  info: {
+    displayName: 'CustomerPage';
+    pluralName: 'customer-pages';
+    singularName: 'customer-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    brandReviewSection: Schema.Attribute.Component<
+      'solution.challenges-chain-section',
+      true
+    >;
+    challengesSection: Schema.Attribute.Component<
+      'solution.challenges-chain-section',
+      false
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ctaSection: Schema.Attribute.Component<'solution.cta-section', false>;
+    description: Schema.Attribute.Text;
+    eyebrow: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::customer-page.customer-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -892,14 +905,15 @@ export interface ApiIndependentPharmacySolutionIndependentPharmacySolution
     draftAndPublish: true;
   };
   attributes: {
-    CommitmentSection: Schema.Attribute.Component<
+    commitmentSection: Schema.Attribute.Component<
       'solution.commitment-section',
       false
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    CTASection: Schema.Attribute.Component<'solution.cta-section', false>;
+    ctaSection: Schema.Attribute.Component<'solution.cta-section', false>;
+    faqSection: Schema.Attribute.Component<'shared.faq-section', false>;
     featureBenefitsSection: Schema.Attribute.Component<
       'solution.feature-benefits-section',
       false
@@ -913,6 +927,10 @@ export interface ApiIndependentPharmacySolutionIndependentPharmacySolution
       false
     >;
     heroSection: Schema.Attribute.Component<'solution.hero-solution', false>;
+    independentSolutionSection: Schema.Attribute.Component<
+      'solution.independent-solution-section',
+      false
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -920,10 +938,6 @@ export interface ApiIndependentPharmacySolutionIndependentPharmacySolution
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    solutionSection: Schema.Attribute.Component<
-      'solution.solution-section',
-      false
-    >;
     testimonialSection: Schema.Attribute.Component<
       'solution.testimonial-section',
       false
@@ -1001,6 +1015,35 @@ export interface ApiPricingPricing extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
+  collectionName: 'questions';
+  info: {
+    displayName: 'Question';
+    pluralName: 'questions';
+    singularName: 'question';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    answer: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question.question'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    question: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSolutionSolution extends Struct.SingleTypeSchema {
   collectionName: 'solutions';
   info: {
@@ -1069,7 +1112,7 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
   attributes: {
     authorLocation: Schema.Attribute.String;
     authorName: Schema.Attribute.String;
-    avatar: Schema.Attribute.Media<'images', true>;
+    avatar: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1080,7 +1123,7 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    quote: Schema.Attribute.String;
+    quote: Schema.Attribute.Text;
     rating: Schema.Attribute.Decimal &
       Schema.Attribute.SetMinMax<
         {
@@ -1599,7 +1642,6 @@ declare module '@strapi/strapi' {
     export interface ContentTypeSchemas {
       'admin::api-token': AdminApiToken;
       'admin::api-token-permission': AdminApiTokenPermission;
-      'admin::audit-log': AdminAuditLog;
       'admin::permission': AdminPermission;
       'admin::role': AdminRole;
       'admin::transfer-token': AdminTransferToken;
@@ -1613,6 +1655,7 @@ declare module '@strapi/strapi' {
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::category.category': ApiCategoryCategory;
       'api::chain-pharmacy-solution.chain-pharmacy-solution': ApiChainPharmacySolutionChainPharmacySolution;
+      'api::customer-page.customer-page': ApiCustomerPageCustomerPage;
       'api::feature.feature': ApiFeatureFeature;
       'api::footer.footer': ApiFooterFooter;
       'api::global.global': ApiGlobalGlobal;
@@ -1621,6 +1664,7 @@ declare module '@strapi/strapi' {
       'api::independent-pharmacy-solution.independent-pharmacy-solution': ApiIndependentPharmacySolutionIndependentPharmacySolution;
       'api::menu.menu': ApiMenuMenu;
       'api::pricing.pricing': ApiPricingPricing;
+      'api::question.question': ApiQuestionQuestion;
       'api::solution.solution': ApiSolutionSolution;
       'api::support.support': ApiSupportSupport;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;

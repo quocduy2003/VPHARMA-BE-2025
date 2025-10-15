@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_about_values_sections",
+  "info": {
+    "displayName": "ValuesSection"
+  },
+  "options": {},
+  "attributes": {
+    "valuesSection": {
+      "type": "component",
+      "component": "solution.commitment-section",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

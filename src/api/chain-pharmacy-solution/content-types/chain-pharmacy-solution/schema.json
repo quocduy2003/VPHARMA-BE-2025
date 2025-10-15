@@ -31,11 +31,6 @@
       "component": "solution.operations-standardization",
       "repeatable": false
     },
-    "introductionFeatures": {
-      "type": "component",
-      "component": "solution.solution-card",
-      "repeatable": false
-    },
     "featureOverview": {
       "type": "component",
       "component": "solution.pharmacy-chain-feature-overview",

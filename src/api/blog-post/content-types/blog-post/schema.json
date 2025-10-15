@@ -17,9 +17,6 @@
     "description": {
       "type": "string"
     },
-    "content": {
-      "type": "richtext"
-    },
     "coverImage": {
       "type": "media",
       "multiple": true,
@@ -30,11 +27,12 @@
         "audios"
       ]
     },
-    "blog_category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::blog-category.blog-category",
-      "inversedBy": "blogPosts"
+    "content": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
     },
     "author": {
       "type": "relation",
@@ -42,11 +40,15 @@
       "target": "api::author.author",
       "inversedBy": "blogPosts"
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": [
-        "shared.seo"
-      ]
+    "blog_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::blog-category.blog-category",
+      "inversedBy": "blogPosts"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
     }
   }
 }

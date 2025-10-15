@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "customer_pages",
+  "info": {
+    "singularName": "customer-page",
+    "pluralName": "customer-pages",
+    "displayName": "CustomerPage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "challengesSection": {
+      "type": "component",
+      "component": "solution.challenges-chain-section",
+      "repeatable": false
+    },
+    "brandReviewSection": {
+      "type": "component",
+      "component": "solution.challenges-chain-section",
+      "repeatable": true
+    },
+    "ctaSection": {
+      "type": "component",
+      "component": "solution.cta-section",
+      "repeatable": false
+    }
+  }
+}
