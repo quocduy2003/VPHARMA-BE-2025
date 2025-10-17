@@ -1,12 +1,25 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AboutFounderSection extends Struct.ComponentSchema {
+  collectionName: 'components_about_founder_sections';
+  info: {
+    displayName: 'FounderSection';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    eyebrow: Schema.Attribute.String;
+    founders: Schema.Attribute.Relation<'oneToMany', 'api::founder.founder'>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface AboutStorySection extends Struct.ComponentSchema {
   collectionName: 'components_about_story_sections';
   info: {
     displayName: 'StorySection';
   };
   attributes: {
-    description: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
     eyebrow: Schema.Attribute.String;
     items: Schema.Attribute.Component<'shared.title', true>;
     title: Schema.Attribute.String;
@@ -19,10 +32,9 @@ export interface AboutValuesSection extends Struct.ComponentSchema {
     displayName: 'ValuesSection';
   };
   attributes: {
-    valuesSection: Schema.Attribute.Component<
-      'solution.commitment-section',
-      false
-    >;
+    cards: Schema.Attribute.Component<'solution.solution-section', true>;
+    eyebrow: Schema.Attribute.String;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -513,8 +525,8 @@ export interface SolutionTestimonialSection extends Struct.ComponentSchema {
     displayName: 'TestimonialSection';
   };
   attributes: {
-    testimonial: Schema.Attribute.Relation<
-      'oneToOne',
+    testimonials: Schema.Attribute.Relation<
+      'oneToMany',
       'api::testimonial.testimonial'
     >;
     title: Schema.Attribute.String;
@@ -524,6 +536,7 @@ export interface SolutionTestimonialSection extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'about.founder-section': AboutFounderSection;
       'about.story-section': AboutStorySection;
       'about.values-section': AboutValuesSection;
       'blog.blog': BlogBlog;

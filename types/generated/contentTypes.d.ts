@@ -377,7 +377,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   collectionName: 'abouts';
   info: {
     description: 'Write about yourself and the content you create';
-    displayName: 'About';
+    displayName: 'AboutPage';
     pluralName: 'abouts';
     singularName: 'about';
   };
@@ -387,10 +387,10 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
       [
-        'solution.testimonial-section',
         'about.values-section',
         'about.story-section',
         'solution.cta-section',
+        'about.founder-section',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -797,6 +797,37 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     >;
     phone: Schema.Attribute.Component<'shared.link-item', true>;
     publishedAt: Schema.Attribute.DateTime;
+    social: Schema.Attribute.Component<'shared.social', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFounderFounder extends Struct.CollectionTypeSchema {
+  collectionName: 'founders';
+  info: {
+    displayName: 'Founder';
+    pluralName: 'founders';
+    singularName: 'founder';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::founder.founder'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.String;
     social: Schema.Attribute.Component<'shared.social', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1659,6 +1690,7 @@ declare module '@strapi/strapi' {
       'api::customer-page.customer-page': ApiCustomerPageCustomerPage;
       'api::feature.feature': ApiFeatureFeature;
       'api::footer.footer': ApiFooterFooter;
+      'api::founder.founder': ApiFounderFounder;
       'api::global.global': ApiGlobalGlobal;
       'api::header.header': ApiHeaderHeader;
       'api::homepage.homepage': ApiHomepageHomepage;

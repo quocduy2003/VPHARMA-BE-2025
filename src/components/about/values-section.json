@@ -5,10 +5,16 @@
   },
   "options": {},
   "attributes": {
-    "valuesSection": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "cards": {
       "type": "component",
-      "component": "solution.commitment-section",
-      "repeatable": false
+      "component": "solution.solution-section",
+      "repeatable": true
     }
   },
   "config": {}

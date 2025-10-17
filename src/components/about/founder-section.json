@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_about_story_sections",
+  "collectionName": "components_about_founder_sections",
   "info": {
-    "displayName": "StorySection"
+    "displayName": "FounderSection"
   },
   "options": {},
   "attributes": {
@@ -14,10 +14,10 @@
     "description": {
       "type": "text"
     },
-    "items": {
-      "type": "component",
-      "component": "shared.title",
-      "repeatable": true
+    "founders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::founder.founder"
     }
   },
   "config": {}

@@ -8,9 +8,9 @@
     "title": {
       "type": "string"
     },
-    "testimonial": {
+    "testimonials": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::testimonial.testimonial"
     }
   },

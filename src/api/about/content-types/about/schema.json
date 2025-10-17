@@ -4,7 +4,7 @@
   "info": {
     "singularName": "about",
     "pluralName": "abouts",
-    "displayName": "About",
+    "displayName": "AboutPage",
     "description": "Write about yourself and the content you create"
   },
   "options": {
@@ -24,10 +24,10 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "solution.testimonial-section",
         "about.values-section",
         "about.story-section",
-        "solution.cta-section"
+        "solution.cta-section",
+        "about.founder-section"
       ]
     }
   }
