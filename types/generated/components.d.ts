@@ -81,6 +81,33 @@ export interface ContactContactItem extends Struct.ComponentSchema {
   attributes: {};
 }
 
+export interface CustomerBrandReviewSection extends Struct.ComponentSchema {
+  collectionName: 'components_customer_brand_review_sections';
+  info: {
+    displayName: 'BrandReviewSection';
+  };
+  attributes: {
+    eyebrow: Schema.Attribute.String;
+    reviewCards: Schema.Attribute.Component<'shared.card', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface CustomerChallengesSection extends Struct.ComponentSchema {
+  collectionName: 'components_customer_challenges_sections';
+  info: {
+    displayName: 'custBlogSection';
+  };
+  attributes: {
+    blog_category: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::blog-category.blog-category'
+    >;
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface FooterLink extends Struct.ComponentSchema {
   collectionName: 'components_footer_links';
   info: {
@@ -102,6 +129,7 @@ export interface SharedCard extends Struct.ComponentSchema {
     alt: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images' | 'videos' | 'audios' | 'files'>;
     name: Schema.Attribute.String;
+    quote: Schema.Attribute.Text;
   };
 }
 
@@ -260,8 +288,8 @@ export interface SolutionChallengesChainSection extends Struct.ComponentSchema {
     displayName: 'ChallengesChainSection';
   };
   attributes: {
-    card: Schema.Attribute.Component<'shared.card', true>;
-    description: Schema.Attribute.Text;
+    challengeCards: Schema.Attribute.Component<'shared.card', true>;
+    description: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -485,8 +513,8 @@ export interface SolutionTestimonialSection extends Struct.ComponentSchema {
     displayName: 'TestimonialSection';
   };
   attributes: {
-    testimonials: Schema.Attribute.Relation<
-      'oneToMany',
+    testimonial: Schema.Attribute.Relation<
+      'oneToOne',
       'api::testimonial.testimonial'
     >;
     title: Schema.Attribute.String;
@@ -503,6 +531,8 @@ declare module '@strapi/strapi' {
       'blog.paragraph': BlogParagraph;
       'contact.contact-info': ContactContactInfo;
       'contact.contact-item': ContactContactItem;
+      'customer.brand-review-section': CustomerBrandReviewSection;
+      'customer.challenges-section': CustomerChallengesSection;
       'footer.link': FooterLink;
       'shared.card': SharedCard;
       'shared.cta-button': SharedCtaButton;

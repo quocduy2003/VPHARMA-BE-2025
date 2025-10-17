@@ -12,19 +12,17 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "text"
     },
     "description": {
-      "type": "string"
+      "type": "text"
     },
     "coverImage": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "allowedTypes": [
-        "images",
         "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "content": {

@@ -20,15 +20,20 @@
     "description": {
       "type": "text"
     },
-    "challengesSection": {
+    "challengeSection": {
       "type": "component",
       "component": "solution.challenges-chain-section",
       "repeatable": false
     },
     "brandReviewSection": {
       "type": "component",
-      "component": "solution.challenges-chain-section",
-      "repeatable": true
+      "component": "customer.brand-review-section",
+      "repeatable": false
+    },
+    "custBlogSection": {
+      "type": "component",
+      "component": "customer.challenges-section",
+      "repeatable": false
     },
     "ctaSection": {
       "type": "component",

@@ -583,14 +583,11 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
           preset: 'defaultHtml';
         }
       >;
-    coverImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
+    coverImage: Schema.Attribute.Media<'files' | 'images'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -599,7 +596,7 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -708,10 +705,10 @@ export interface ApiCustomerPageCustomerPage extends Struct.SingleTypeSchema {
   };
   attributes: {
     brandReviewSection: Schema.Attribute.Component<
-      'solution.challenges-chain-section',
-      true
+      'customer.brand-review-section',
+      false
     >;
-    challengesSection: Schema.Attribute.Component<
+    challengeSection: Schema.Attribute.Component<
       'solution.challenges-chain-section',
       false
     >;
@@ -719,6 +716,10 @@ export interface ApiCustomerPageCustomerPage extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     ctaSection: Schema.Attribute.Component<'solution.cta-section', false>;
+    custBlogSection: Schema.Attribute.Component<
+      'customer.challenges-section',
+      false
+    >;
     description: Schema.Attribute.Text;
     eyebrow: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -869,7 +870,7 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
 export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
   collectionName: 'homepages';
   info: {
-    displayName: 'Homepage';
+    displayName: 'HomePage';
     pluralName: 'homepages';
     singularName: 'homepage';
   };

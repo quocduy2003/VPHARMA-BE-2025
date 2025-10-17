@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_customer_challenges_sections",
+  "info": {
+    "displayName": "custBlogSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "blog_category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::blog-category.blog-category"
+    }
+  },
+  "config": {}
+}

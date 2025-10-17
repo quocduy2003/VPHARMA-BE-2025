@@ -1,17 +1,17 @@
 {
-  "collectionName": "components_solution_challenges_chain_sections",
+  "collectionName": "components_customer_brand_review_sections",
   "info": {
-    "displayName": "ChallengesChainSection"
+    "displayName": "BrandReviewSection"
   },
   "options": {},
   "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
     "title": {
       "type": "string"
     },
-    "description": {
-      "type": "string"
-    },
-    "challengeCards": {
+    "reviewCards": {
       "type": "component",
       "component": "shared.card",
       "repeatable": true

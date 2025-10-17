@@ -23,6 +23,9 @@
     },
     "alt": {
       "type": "string"
+    },
+    "quote": {
+      "type": "text"
     }
   },
   "config": {}
