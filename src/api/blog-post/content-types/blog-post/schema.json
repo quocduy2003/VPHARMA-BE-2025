@@ -12,7 +12,7 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "text"
+      "type": "string"
     },
     "description": {
       "type": "text"
@@ -25,6 +25,14 @@
         "images"
       ]
     },
+    "alt": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
     "content": {
       "type": "customField",
       "customField": "plugin::ckeditor5.CKEditor",
@@ -32,21 +40,17 @@
         "preset": "defaultHtml"
       }
     },
-    "author": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "blogPosts"
-    },
     "blog_category": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::blog-category.blog-category",
-      "inversedBy": "blogPosts"
+      "inversedBy": "blog_posts"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::author.author",
+      "mappedBy": "blog_post"
     }
   }
 }

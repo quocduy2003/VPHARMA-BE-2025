@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_home_feature_sections",
+  "info": {
+    "displayName": "FeatureSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "featureCards": {
+      "type": "component",
+      "component": "solution.solution-section",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

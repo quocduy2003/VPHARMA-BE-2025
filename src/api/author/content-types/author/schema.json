@@ -28,23 +28,17 @@
     "email": {
       "type": "string"
     },
-    "blogPosts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::blog-post.blog-post",
-      "mappedBy": "author"
-    },
     "user": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "mappedBy": "author"
     },
-    "blog_post_tests": {
+    "blog_post": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::blog-post-test.blog-post-test",
-      "mappedBy": "author"
+      "relation": "oneToOne",
+      "target": "api::blog-post.blog-post",
+      "inversedBy": "author"
     }
   }
 }

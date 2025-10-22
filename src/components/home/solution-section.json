@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_shared_testimonial_sections",
+  "collectionName": "components_home_solution_sections",
   "info": {
-    "displayName": "TestimonialSection"
+    "displayName": "SolutionSection"
   },
   "options": {},
   "attributes": {
@@ -11,10 +11,10 @@
     "description": {
       "type": "text"
     },
-    "brandTestimonials": {
+    "solutionCards": {
       "type": "component",
-      "component": "shared.card",
-      "repeatable": false
+      "component": "home.solution-card",
+      "repeatable": true
     }
   },
   "config": {}

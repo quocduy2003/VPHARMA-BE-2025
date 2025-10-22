@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_home_experience_sections",
+  "info": {
+    "displayName": "ExperienceSection"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "alt": {
+      "type": "string"
+    },
+    "contents": {
+      "type": "component",
+      "component": "shared.title",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

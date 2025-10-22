@@ -131,6 +131,72 @@ export interface FooterLink extends Struct.ComponentSchema {
   };
 }
 
+export interface HomeBlogSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_blog_sections';
+  info: {
+    displayName: 'BlogSection';
+  };
+  attributes: {
+    blog_categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blog-category.blog-category'
+    >;
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface HomeExperienceSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_experience_sections';
+  info: {
+    displayName: 'ExperienceSection';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    contents: Schema.Attribute.Component<'shared.title', true>;
+    eyebrow: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface HomeFeatureSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_feature_sections';
+  info: {
+    displayName: 'FeatureSection';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+    featureCards: Schema.Attribute.Component<'solution.solution-section', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface HomeSolutionCard extends Struct.ComponentSchema {
+  collectionName: 'components_home_solution_cards';
+  info: {
+    displayName: 'SolutionCard';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface HomeSolutionSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_solution_sections';
+  info: {
+    displayName: 'SolutionSection';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    solutionCards: Schema.Attribute.Component<'home.solution-card', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedCard extends Struct.ComponentSchema {
   collectionName: 'components_shared_cards';
   info: {
@@ -267,18 +333,6 @@ export interface SharedSubMenu extends Struct.ComponentSchema {
   };
   attributes: {
     link: Schema.Attribute.String;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface SharedTestimonialSection extends Struct.ComponentSchema {
-  collectionName: 'components_shared_testimonial_sections';
-  info: {
-    displayName: 'TestimonialSection';
-  };
-  attributes: {
-    brandTestimonials: Schema.Attribute.Component<'shared.card', false>;
-    description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
 }
@@ -463,6 +517,7 @@ export interface SolutionOperationsStandardization
   attributes: {
     contents: Schema.Attribute.Component<'solution.tab-content', true>;
     ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    eyebrow: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -525,11 +580,12 @@ export interface SolutionTestimonialSection extends Struct.ComponentSchema {
     displayName: 'TestimonialSection';
   };
   attributes: {
+    eyebrow: Schema.Attribute.String;
     testimonials: Schema.Attribute.Relation<
       'oneToMany',
       'api::testimonial.testimonial'
     >;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.Text;
   };
 }
 
@@ -547,6 +603,11 @@ declare module '@strapi/strapi' {
       'customer.brand-review-section': CustomerBrandReviewSection;
       'customer.challenges-section': CustomerChallengesSection;
       'footer.link': FooterLink;
+      'home.blog-section': HomeBlogSection;
+      'home.experience-section': HomeExperienceSection;
+      'home.feature-section': HomeFeatureSection;
+      'home.solution-card': HomeSolutionCard;
+      'home.solution-section': HomeSolutionSection;
       'shared.card': SharedCard;
       'shared.cta-button': SharedCtaButton;
       'shared.faq-section': SharedFaqSection;
@@ -558,7 +619,6 @@ declare module '@strapi/strapi' {
       'shared.seo': SharedSeo;
       'shared.social': SharedSocial;
       'shared.sub-menu': SharedSubMenu;
-      'shared.testimonial-section': SharedTestimonialSection;
       'shared.title': SharedTitle;
       'solution.challenges-chain-section': SolutionChallengesChainSection;
       'solution.challenges-section': SolutionChallengesSection;

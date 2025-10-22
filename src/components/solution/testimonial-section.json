@@ -5,8 +5,11 @@
   },
   "options": {},
   "attributes": {
-    "title": {
+    "eyebrow": {
       "type": "string"
+    },
+    "title": {
+      "type": "text"
     },
     "testimonials": {
       "type": "relation",

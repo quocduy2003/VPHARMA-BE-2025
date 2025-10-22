@@ -459,12 +459,8 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
   attributes: {
     avatar: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    blog_post_tests: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::blog-post-test.blog-post-test'
-    >;
-    blogPosts: Schema.Attribute.Relation<
-      'oneToMany',
+    blog_post: Schema.Attribute.Relation<
+      'oneToOne',
       'api::blog-post.blog-post'
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -501,7 +497,7 @@ export interface ApiBlogCategoryBlogCategory
     draftAndPublish: true;
   };
   attributes: {
-    blogPosts: Schema.Attribute.Relation<
+    blog_posts: Schema.Attribute.Relation<
       'oneToMany',
       'api::blog-post.blog-post'
     >;
@@ -523,43 +519,6 @@ export interface ApiBlogCategoryBlogCategory
   };
 }
 
-export interface ApiBlogPostTestBlogPostTest
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'blog_post_tests';
-  info: {
-    displayName: 'BlogPostTest';
-    pluralName: 'blog-post-tests';
-    singularName: 'blog-post-test';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    content: Schema.Attribute.DynamicZone<
-      ['blog.blog', 'blog.paragraph', 'blog.image']
-    >;
-    coverImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::blog-post-test.blog-post-test'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
   collectionName: 'blog_posts';
   info: {
@@ -571,7 +530,8 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
+    alt: Schema.Attribute.String;
+    author: Schema.Attribute.Relation<'oneToOne', 'api::author.author'>;
     blog_category: Schema.Attribute.Relation<
       'manyToOne',
       'api::blog-category.blog-category'
@@ -595,8 +555,42 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.Text;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBlogBlog extends Struct.SingleTypeSchema {
+  collectionName: 'blogs';
+  info: {
+    displayName: 'Blog';
+    pluralName: 'blogs';
+    singularName: 'blog';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    featuredNews: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blog-post.blog-post'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
+      Schema.Attribute.Private;
+    main_blogs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blog-post.blog-post'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -909,9 +903,17 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    blogSection: Schema.Attribute.Component<'home.blog-section', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    experienceSection: Schema.Attribute.Component<
+      'home.experience-section',
+      false
+    >;
+    eyebrow: Schema.Attribute.String;
+    featureSection: Schema.Attribute.Component<'home.feature-section', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -919,6 +921,12 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    solutionSection: Schema.Attribute.Component<'home.solution-section', false>;
+    testimonialSection: Schema.Attribute.Component<
+      'solution.testimonial-section',
+      false
+    >;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1683,8 +1691,8 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::blog-category.blog-category': ApiBlogCategoryBlogCategory;
-      'api::blog-post-test.blog-post-test': ApiBlogPostTestBlogPostTest;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
+      'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
       'api::chain-pharmacy-solution.chain-pharmacy-solution': ApiChainPharmacySolutionChainPharmacySolution;
       'api::customer-page.customer-page': ApiCustomerPageCustomerPage;

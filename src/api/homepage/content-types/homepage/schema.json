@@ -10,5 +10,42 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "ctaButton": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": false
+    },
+    "solutionSection": {
+      "type": "component",
+      "component": "home.solution-section",
+      "repeatable": false
+    },
+    "featureSection": {
+      "type": "component",
+      "component": "home.feature-section",
+      "repeatable": false
+    },
+    "experienceSection": {
+      "type": "component",
+      "component": "home.experience-section",
+      "repeatable": false
+    },
+    "testimonialSection": {
+      "type": "component",
+      "component": "solution.testimonial-section",
+      "repeatable": false
+    },
+    "blogSection": {
+      "type": "component",
+      "component": "home.blog-section",
+      "repeatable": false
+    }
+  }
 }
