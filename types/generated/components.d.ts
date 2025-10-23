@@ -366,7 +366,7 @@ export interface SolutionChallengesSection extends Struct.ComponentSchema {
     displayName: 'ChallengesSection';
   };
   attributes: {
-    challengesCards: Schema.Attribute.Component<'solution.tab-content', true>;
+    challengeCards: Schema.Attribute.Component<'solution.tab-content', true>;
     description: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
@@ -455,13 +455,10 @@ export interface SolutionHeroPharmacyChain extends Struct.ComponentSchema {
   };
   attributes: {
     alt: Schema.Attribute.String;
-    ctaButton: Schema.Attribute.Component<'shared.cta-button', true>;
+    ctaButtons: Schema.Attribute.Component<'shared.cta-button', true>;
     description: Schema.Attribute.Text;
     eyebrow: Schema.Attribute.Text;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     title: Schema.Attribute.String;
     video: Schema.Attribute.Media<'files' | 'videos', true>;
   };

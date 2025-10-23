@@ -11,7 +11,7 @@
     "description": {
       "type": "string"
     },
-    "challengesCards": {
+    "challengeCards": {
       "type": "component",
       "component": "solution.tab-content",
       "repeatable": true
