@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "feature_categories",
+  "info": {
+    "singularName": "feature-category",
+    "pluralName": "feature-categories",
+    "displayName": "FeatureCategory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "features": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feature.feature",
+      "mappedBy": "feature_category"
+    },
+    "pricing_plans": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pricing-plan.pricing-plan",
+      "inversedBy": "feature_categories"
+    }
+  }
+}

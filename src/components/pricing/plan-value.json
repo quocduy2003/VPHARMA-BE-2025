@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_pricing_plan_values",
+  "info": {
+    "displayName": "PlanValue"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

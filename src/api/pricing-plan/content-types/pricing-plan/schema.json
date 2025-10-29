@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pricing_plans",
+  "info": {
+    "singularName": "pricing-plan",
+    "pluralName": "pricing-plans",
+    "displayName": "PricingPlan "
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "billingCycle": {
+      "type": "string"
+    },
+    "trialNote": {
+      "type": "string"
+    },
+    "audienceNote": {
+      "type": "string"
+    },
+    "is_featured": {
+      "type": "boolean"
+    },
+    "feature_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::feature-category.feature-category",
+      "mappedBy": "pricing_plans"
+    }
+  }
+}

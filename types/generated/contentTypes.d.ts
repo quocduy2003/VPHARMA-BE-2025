@@ -738,6 +738,68 @@ export interface ApiCustomerPageCustomerPage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiFeatureCategoryFeatureCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'feature_categories';
+  info: {
+    displayName: 'FeatureCategory';
+    pluralName: 'feature-categories';
+    singularName: 'feature-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    features: Schema.Attribute.Relation<'oneToMany', 'api::feature.feature'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::feature-category.feature-category'
+    > &
+      Schema.Attribute.Private;
+    pricing_plans: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::pricing-plan.pricing-plan'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFeatureValueFeatureValue
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'feature_values';
+  info: {
+    displayName: 'FeatureValue ';
+    pluralName: 'feature-values';
+    singularName: 'feature-value';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::feature-value.feature-value'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFeatureFeature extends Struct.CollectionTypeSchema {
   collectionName: 'features';
   info: {
@@ -752,13 +814,19 @@ export interface ApiFeatureFeature extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    featureItem: Schema.Attribute.Component<'shared.featuresitems', false>;
+    feature_category: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::feature-category.feature-category'
+    >;
+    key: Schema.Attribute.UID<'name'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::feature.feature'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    PlanValue: Schema.Attribute.Component<'pricing.plan-value', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1036,6 +1104,43 @@ export interface ApiMenuMenu extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPricingPlanPricingPlan extends Struct.CollectionTypeSchema {
+  collectionName: 'pricing_plans';
+  info: {
+    displayName: 'PricingPlan ';
+    pluralName: 'pricing-plans';
+    singularName: 'pricing-plan';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    audienceNote: Schema.Attribute.String;
+    billingCycle: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    feature_categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::feature-category.feature-category'
+    >;
+    is_featured: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pricing-plan.pricing-plan'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    price: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    trialNote: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPricingPricing extends Struct.SingleTypeSchema {
   collectionName: 'pricings';
   info: {
@@ -1050,13 +1155,19 @@ export interface ApiPricingPricing extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::pricing.pricing'
     > &
       Schema.Attribute.Private;
+    pricing_plans: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pricing-plan.pricing-plan'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1704,6 +1815,8 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::chain-pharmacy-solution.chain-pharmacy-solution': ApiChainPharmacySolutionChainPharmacySolution;
       'api::customer-page.customer-page': ApiCustomerPageCustomerPage;
+      'api::feature-category.feature-category': ApiFeatureCategoryFeatureCategory;
+      'api::feature-value.feature-value': ApiFeatureValueFeatureValue;
       'api::feature.feature': ApiFeatureFeature;
       'api::footer.footer': ApiFooterFooter;
       'api::founder.founder': ApiFounderFounder;
@@ -1712,6 +1825,7 @@ declare module '@strapi/strapi' {
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::independent-pharmacy-solution.independent-pharmacy-solution': ApiIndependentPharmacySolutionIndependentPharmacySolution;
       'api::menu.menu': ApiMenuMenu;
+      'api::pricing-plan.pricing-plan': ApiPricingPlanPricingPlan;
       'api::pricing.pricing': ApiPricingPricing;
       'api::question.question': ApiQuestionQuestion;
       'api::solution.solution': ApiSolutionSolution;

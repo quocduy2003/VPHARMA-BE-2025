@@ -11,10 +11,23 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "featureItem": {
+    "name": {
+      "type": "string"
+    },
+    "key": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "feature_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::feature-category.feature-category",
+      "inversedBy": "features"
+    },
+    "PlanValue": {
       "type": "component",
-      "component": "shared.featuresitems",
-      "repeatable": false
+      "component": "pricing.plan-value",
+      "repeatable": true
     }
   }
 }

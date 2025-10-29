@@ -10,5 +10,17 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "pricing_plans": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pricing-plan.pricing-plan"
+    }
+  }
 }

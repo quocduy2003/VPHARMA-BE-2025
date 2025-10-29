@@ -197,6 +197,17 @@ export interface HomeSolutionSection extends Struct.ComponentSchema {
   };
 }
 
+export interface PricingPlanValue extends Struct.ComponentSchema {
+  collectionName: 'components_pricing_plan_values';
+  info: {
+    displayName: 'PlanValue';
+  };
+  attributes: {
+    isActive: Schema.Attribute.Boolean;
+    value: Schema.Attribute.String;
+  };
+}
+
 export interface SharedCard extends Struct.ComponentSchema {
   collectionName: 'components_shared_cards';
   info: {
@@ -633,6 +644,7 @@ declare module '@strapi/strapi' {
       'home.feature-section': HomeFeatureSection;
       'home.solution-card': HomeSolutionCard;
       'home.solution-section': HomeSolutionSection;
+      'pricing.plan-value': PricingPlanValue;
       'shared.card': SharedCard;
       'shared.cta-button': SharedCtaButton;
       'shared.faq-section': SharedFaqSection;
