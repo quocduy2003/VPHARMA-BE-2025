@@ -108,7 +108,7 @@ export interface CustomerBrandReviewSection extends Struct.ComponentSchema {
 export interface CustomerChallengesSection extends Struct.ComponentSchema {
   collectionName: 'components_customer_challenges_sections';
   info: {
-    displayName: 'custBlogSection';
+    displayName: 'CustBlogSection';
   };
   attributes: {
     blog_category: Schema.Attribute.Relation<
@@ -354,7 +354,7 @@ export interface SolutionChallengesChainSection extends Struct.ComponentSchema {
     displayName: 'ChallengesChainSection';
   };
   attributes: {
-    challengeCards: Schema.Attribute.Component<'shared.card', true>;
+    cards: Schema.Attribute.Component<'shared.card', true>;
     description: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
@@ -398,6 +398,20 @@ export interface SolutionCtaSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SolutionCustomerExperienceSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_solution_customer_experience_sections';
+  info: {
+    displayName: 'CustomerExperienceSection';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'solution.solution-section', true>;
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    eyebrow: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SolutionFeatureBenefitsSection extends Struct.ComponentSchema {
   collectionName: 'components_solution_feature_benefits_sections';
   info: {
@@ -407,6 +421,19 @@ export interface SolutionFeatureBenefitsSection extends Struct.ComponentSchema {
     contents: Schema.Attribute.Component<'solution.tab-content', true>;
     ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
     description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SolutionFeatureCarousel extends Struct.ComponentSchema {
+  collectionName: 'components_solution_feature_carousels';
+  info: {
+    displayName: 'FeatureCarousel';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    eyebrow: Schema.Attribute.String;
+    featureImages: Schema.Attribute.Media<'images' | 'files', true>;
     title: Schema.Attribute.String;
   };
 }
@@ -528,6 +555,7 @@ export interface SolutionPharmacyChainFeatureOverview
   attributes: {
     contentCards: Schema.Attribute.Component<'solution.feature-grid', true>;
     ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    eyebrow: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -621,7 +649,9 @@ declare module '@strapi/strapi' {
       'solution.challenges-section': SolutionChallengesSection;
       'solution.commitment-section': SolutionCommitmentSection;
       'solution.cta-section': SolutionCtaSection;
+      'solution.customer-experience-section': SolutionCustomerExperienceSection;
       'solution.feature-benefits-section': SolutionFeatureBenefitsSection;
+      'solution.feature-carousel': SolutionFeatureCarousel;
       'solution.feature-grid': SolutionFeatureGrid;
       'solution.feature-section': SolutionFeatureSection;
       'solution.feature-showcase-section': SolutionFeatureShowcaseSection;

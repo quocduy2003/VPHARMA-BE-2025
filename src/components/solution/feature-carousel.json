@@ -1,25 +1,25 @@
 {
-  "collectionName": "components_solution_solution_sections",
+  "collectionName": "components_solution_feature_carousels",
   "info": {
-    "displayName": "SolutionCard"
+    "displayName": "FeatureCarousel"
   },
   "options": {},
   "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
     "title": {
       "type": "string"
     },
     "description": {
       "type": "text"
     },
-    "alt": {
-      "type": "string"
-    },
-    "image": {
+    "featureImages": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "allowedTypes": [
-        "files",
-        "images"
+        "images",
+        "files"
       ]
     }
   },

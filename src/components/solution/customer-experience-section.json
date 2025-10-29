@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_solution_pharmacy_chain_feature_overviews",
+  "collectionName": "components_solution_customer_experience_sections",
   "info": {
-    "displayName": "PharmacyChainFeatureOverview"
+    "displayName": "CustomerExperienceSection"
   },
   "options": {},
   "attributes": {
@@ -11,15 +11,15 @@
     "title": {
       "type": "string"
     },
+    "cards": {
+      "type": "component",
+      "component": "solution.solution-section",
+      "repeatable": true
+    },
     "ctaButton": {
       "type": "component",
       "component": "shared.cta-button",
       "repeatable": false
-    },
-    "contentCards": {
-      "type": "component",
-      "component": "solution.feature-grid",
-      "repeatable": true
     }
   },
   "config": {}

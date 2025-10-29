@@ -641,13 +641,21 @@ export interface ApiChainPharmacySolutionChainPharmacySolution
     draftAndPublish: true;
   };
   attributes: {
-    Carousel: Schema.Attribute.Component<'solution.solution-section', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     ctaSection: Schema.Attribute.Component<'solution.cta-section', false>;
+    customerExperienceSection: Schema.Attribute.Component<
+      'solution.customer-experience-section',
+      false
+    >;
+    faqSection: Schema.Attribute.Component<'shared.faq-section', false>;
     featureBenefitsSection: Schema.Attribute.Component<
       'solution.commitment-section',
+      false
+    >;
+    featureCarousel: Schema.Attribute.Component<
+      'solution.feature-carousel',
       false
     >;
     featureOverview: Schema.Attribute.Component<
@@ -676,7 +684,7 @@ export interface ApiChainPharmacySolutionChainPharmacySolution
       'solution.challenges-section',
       false
     >;
-    PharmacyFeedback: Schema.Attribute.Component<
+    pharmaFeedback: Schema.Attribute.Component<
       'solution.challenges-chain-section',
       false
     >;

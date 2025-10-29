@@ -31,14 +31,14 @@
       "component": "solution.operations-standardization",
       "repeatable": false
     },
+    "customerExperienceSection": {
+      "type": "component",
+      "component": "solution.customer-experience-section",
+      "repeatable": false
+    },
     "featureOverview": {
       "type": "component",
       "component": "solution.pharmacy-chain-feature-overview",
-      "repeatable": false
-    },
-    "Carousel": {
-      "type": "component",
-      "component": "solution.solution-section",
       "repeatable": false
     },
     "operationsStandardizationBottom": {
@@ -46,7 +46,12 @@
       "component": "solution.operations-standardization",
       "repeatable": false
     },
-    "PharmacyFeedback": {
+    "featureCarousel": {
+      "type": "component",
+      "component": "solution.feature-carousel",
+      "repeatable": false
+    },
+    "pharmaFeedback": {
       "type": "component",
       "component": "solution.challenges-chain-section",
       "repeatable": false
@@ -54,6 +59,11 @@
     "ctaSection": {
       "type": "component",
       "component": "solution.cta-section",
+      "repeatable": false
+    },
+    "faqSection": {
+      "type": "component",
+      "component": "shared.faq-section",
       "repeatable": false
     }
   }

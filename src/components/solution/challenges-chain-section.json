@@ -11,7 +11,7 @@
     "description": {
       "type": "string"
     },
-    "challengeCards": {
+    "cards": {
       "type": "component",
       "component": "shared.card",
       "repeatable": true
