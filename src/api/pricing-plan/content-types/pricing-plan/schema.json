@@ -27,13 +27,8 @@
       "type": "string"
     },
     "is_featured": {
-      "type": "boolean"
-    },
-    "feature_categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::feature-category.feature-category",
-      "mappedBy": "pricing_plans"
+      "type": "boolean",
+      "default": false
     }
   }
 }

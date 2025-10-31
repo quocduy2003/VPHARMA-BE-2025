@@ -203,7 +203,11 @@ export interface PricingPlanValue extends Struct.ComponentSchema {
     displayName: 'PlanValue';
   };
   attributes: {
-    isActive: Schema.Attribute.Boolean;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    pricing_plan: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::pricing-plan.pricing-plan'
+    >;
     value: Schema.Attribute.String;
   };
 }

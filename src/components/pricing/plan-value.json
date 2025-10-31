@@ -9,7 +9,13 @@
       "type": "string"
     },
     "isActive": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
+    },
+    "pricing_plan": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pricing-plan.pricing-plan"
     }
   },
   "config": {}

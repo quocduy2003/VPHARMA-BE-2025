@@ -21,6 +21,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::pricing-plan.pricing-plan"
+    },
+    "feature_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feature-category.feature-category"
     }
   }
 }

@@ -760,10 +760,6 @@ export interface ApiFeatureCategoryFeatureCategory
       'api::feature-category.feature-category'
     > &
       Schema.Attribute.Private;
-    pricing_plans: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::pricing-plan.pricing-plan'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -1120,11 +1116,7 @@ export interface ApiPricingPlanPricingPlan extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    feature_categories: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::feature-category.feature-category'
-    >;
-    is_featured: Schema.Attribute.Boolean;
+    is_featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1156,6 +1148,10 @@ export interface ApiPricingPricing extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    feature_categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::feature-category.feature-category'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

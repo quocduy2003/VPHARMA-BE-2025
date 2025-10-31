@@ -19,12 +19,6 @@
       "relation": "oneToMany",
       "target": "api::feature.feature",
       "mappedBy": "feature_category"
-    },
-    "pricing_plans": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::pricing-plan.pricing-plan",
-      "inversedBy": "feature_categories"
     }
   }
 }
