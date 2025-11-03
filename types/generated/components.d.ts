@@ -72,6 +72,31 @@ export interface BlogParagraph extends Struct.ComponentSchema {
   };
 }
 
+export interface ContactCardSupportSoftware extends Struct.ComponentSchema {
+  collectionName: 'components_contact_card_support_softwares';
+  info: {
+    displayName: 'CardSupportSoftware';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.Media<'images' | 'files'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ContactContactForm extends Struct.ComponentSchema {
+  collectionName: 'components_contact_contact_forms';
+  info: {
+    displayName: 'ContactForm';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface ContactContactInfo extends Struct.ComponentSchema {
   collectionName: 'components_contact_contact_infos';
   info: {
@@ -85,12 +110,43 @@ export interface ContactContactInfo extends Struct.ComponentSchema {
   };
 }
 
+export interface ContactContactInformation extends Struct.ComponentSchema {
+  collectionName: 'components_contact_contact_informations';
+  info: {
+    displayName: 'ContactInformation';
+  };
+  attributes: {
+    address: Schema.Attribute.Component<'shared.social', false>;
+    description: Schema.Attribute.Text;
+    email: Schema.Attribute.Component<'shared.social', false>;
+    mapLink: Schema.Attribute.Text;
+    phone: Schema.Attribute.Component<'shared.social', false>;
+    socials: Schema.Attribute.Component<'shared.social', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface ContactContactItem extends Struct.ComponentSchema {
   collectionName: 'components_contact_contact_items';
   info: {
     displayName: 'ContactItem';
   };
   attributes: {};
+}
+
+export interface ContactSupportSoftware extends Struct.ComponentSchema {
+  collectionName: 'components_contact_support_softwares';
+  info: {
+    displayName: 'SupportSoftware';
+  };
+  attributes: {
+    cardSupportSoftware: Schema.Attribute.Component<
+      'contact.card-support-software',
+      true
+    >;
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
 }
 
 export interface CustomerBrandReviewSection extends Struct.ComponentSchema {
@@ -244,19 +300,6 @@ export interface SharedFaqSection extends Struct.ComponentSchema {
   };
   attributes: {
     questions: Schema.Attribute.Relation<'oneToMany', 'api::question.question'>;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface SharedFeaturesitems extends Struct.ComponentSchema {
-  collectionName: 'components_shared_featuresitems';
-  info: {
-    displayName: 'Featuresitems';
-  };
-  attributes: {
-    alt: Schema.Attribute.String;
-    description: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String;
   };
 }
@@ -638,8 +681,12 @@ declare module '@strapi/strapi' {
       'blog.blog': BlogBlog;
       'blog.image': BlogImage;
       'blog.paragraph': BlogParagraph;
+      'contact.card-support-software': ContactCardSupportSoftware;
+      'contact.contact-form': ContactContactForm;
       'contact.contact-info': ContactContactInfo;
+      'contact.contact-information': ContactContactInformation;
       'contact.contact-item': ContactContactItem;
+      'contact.support-software': ContactSupportSoftware;
       'customer.brand-review-section': CustomerBrandReviewSection;
       'customer.challenges-section': CustomerChallengesSection;
       'footer.link': FooterLink;
@@ -652,7 +699,6 @@ declare module '@strapi/strapi' {
       'shared.card': SharedCard;
       'shared.cta-button': SharedCtaButton;
       'shared.faq-section': SharedFaqSection;
-      'shared.featuresitems': SharedFeaturesitems;
       'shared.hero-section': SharedHeroSection;
       'shared.link-item': SharedLinkItem;
       'shared.media': SharedMedia;

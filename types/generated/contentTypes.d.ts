@@ -695,6 +695,45 @@ export interface ApiChainPharmacySolutionChainPharmacySolution
   };
 }
 
+export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
+  collectionName: 'contact_pages';
+  info: {
+    displayName: 'ContactPage';
+    pluralName: 'contact-pages';
+    singularName: 'contact-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contactForm: Schema.Attribute.Component<'contact.contact-form', false>;
+    contactInformation: Schema.Attribute.Component<
+      'contact.contact-information',
+      false
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    faqSection: Schema.Attribute.Component<'shared.faq-section', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-page.contact-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    supportSoftware: Schema.Attribute.Component<
+      'contact.support-software',
+      false
+    >;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCustomerPageCustomerPage extends Struct.SingleTypeSchema {
   collectionName: 'customer_pages';
   info: {
@@ -1147,7 +1186,9 @@ export interface ApiPricingPricing extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    ctaSection: Schema.Attribute.Component<'solution.cta-section', false>;
     description: Schema.Attribute.Text;
+    faqSection: Schema.Attribute.Component<'shared.faq-section', false>;
     feature_categories: Schema.Attribute.Relation<
       'oneToMany',
       'api::feature-category.feature-category'
@@ -1181,7 +1222,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    answer: Schema.Attribute.String;
+    answer: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1810,6 +1851,7 @@ declare module '@strapi/strapi' {
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
       'api::chain-pharmacy-solution.chain-pharmacy-solution': ApiChainPharmacySolutionChainPharmacySolution;
+      'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::customer-page.customer-page': ApiCustomerPageCustomerPage;
       'api::feature-category.feature-category': ApiFeatureCategoryFeatureCategory;
       'api::feature-value.feature-value': ApiFeatureValueFeatureValue;

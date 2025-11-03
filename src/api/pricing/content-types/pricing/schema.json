@@ -26,6 +26,16 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::feature-category.feature-category"
+    },
+    "faqSection": {
+      "type": "component",
+      "component": "shared.faq-section",
+      "repeatable": false
+    },
+    "ctaSection": {
+      "type": "component",
+      "component": "solution.cta-section",
+      "repeatable": false
     }
   }
 }

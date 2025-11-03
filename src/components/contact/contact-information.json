@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_contact_contact_informations",
+  "info": {
+    "displayName": "ContactInformation"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "mapLink": {
+      "type": "text"
+    },
+    "phone": {
+      "type": "component",
+      "component": "shared.social",
+      "repeatable": false
+    },
+    "email": {
+      "type": "component",
+      "component": "shared.social",
+      "repeatable": false
+    },
+    "address": {
+      "type": "component",
+      "component": "shared.social",
+      "repeatable": false
+    },
+    "socials": {
+      "type": "component",
+      "component": "shared.social",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

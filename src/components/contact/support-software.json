@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_contact_support_softwares",
+  "info": {
+    "displayName": "SupportSoftware"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "cardSupportSoftware": {
+      "type": "component",
+      "component": "contact.card-support-software",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
