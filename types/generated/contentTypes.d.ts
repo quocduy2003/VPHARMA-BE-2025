@@ -884,25 +884,20 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
-    description: Schema.Attribute.String;
-    email: Schema.Attribute.Component<'shared.link-item', true>;
+    description: Schema.Attribute.Text;
+    email: Schema.Attribute.Component<'shared.link-item', false>;
     footerMenu: Schema.Attribute.Component<'footer.link', true>;
-    hotline: Schema.Attribute.Component<'shared.link-item', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::footer.footer'
     > &
       Schema.Attribute.Private;
-    location: Schema.Attribute.Component<'shared.link-item', true>;
-    logo: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    phone: Schema.Attribute.Component<'shared.link-item', true>;
+    location: Schema.Attribute.Component<'shared.link-item', false>;
+    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    phone: Schema.Attribute.Component<'shared.link-item', false>;
     publishedAt: Schema.Attribute.DateTime;
-    social: Schema.Attribute.Component<'shared.social', true>;
+    socials: Schema.Attribute.Component<'shared.link-item', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -972,6 +967,36 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHeaderSolutionHeaderSolution
+  extends Struct.SingleTypeSchema {
+  collectionName: 'header_solutions';
+  info: {
+    displayName: 'HeaderSolution';
+    pluralName: 'header-solutions';
+    singularName: 'header-solution';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::header-solution.header-solution'
+    > &
+      Schema.Attribute.Private;
+    menus: Schema.Attribute.Relation<'oneToMany', 'api::menu.menu'>;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
   collectionName: 'headers';
   info: {
@@ -986,7 +1011,7 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    ctaButtons: Schema.Attribute.Component<'shared.cta-button', true>;
     link: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -1859,6 +1884,7 @@ declare module '@strapi/strapi' {
       'api::footer.footer': ApiFooterFooter;
       'api::founder.founder': ApiFounderFounder;
       'api::global.global': ApiGlobalGlobal;
+      'api::header-solution.header-solution': ApiHeaderSolutionHeaderSolution;
       'api::header.header': ApiHeaderHeader;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::independent-pharmacy-solution.independent-pharmacy-solution': ApiIndependentPharmacySolutionIndependentPharmacySolution;

@@ -171,6 +171,7 @@ export interface CustomerChallengesSection extends Struct.ComponentSchema {
       'oneToOne',
       'api::blog-category.blog-category'
     >;
+    buttonTitle: Schema.Attribute.String;
     description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };

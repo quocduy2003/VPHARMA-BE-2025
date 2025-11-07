@@ -29,10 +29,10 @@
       "relation": "oneToMany",
       "target": "api::menu.menu"
     },
-    "ctaButton": {
+    "ctaButtons": {
       "type": "component",
       "component": "shared.cta-button",
-      "repeatable": false
+      "repeatable": true
     }
   }
 }

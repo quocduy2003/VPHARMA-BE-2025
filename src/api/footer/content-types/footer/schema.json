@@ -13,7 +13,7 @@
   "attributes": {
     "logo": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "allowedTypes": [
         "images",
         "files",
@@ -22,11 +22,11 @@
       ]
     },
     "description": {
-      "type": "string"
+      "type": "text"
     },
-    "social": {
+    "socials": {
       "type": "component",
-      "component": "shared.social",
+      "component": "shared.link-item",
       "repeatable": true
     },
     "footerMenu": {
@@ -37,26 +37,16 @@
     "phone": {
       "type": "component",
       "component": "shared.link-item",
-      "repeatable": true
-    },
-    "hotline": {
-      "type": "component",
-      "component": "shared.link-item",
-      "repeatable": true
+      "repeatable": false
     },
     "email": {
       "type": "component",
       "component": "shared.link-item",
-      "repeatable": true
+      "repeatable": false
     },
     "location": {
       "type": "component",
       "component": "shared.link-item",
-      "repeatable": true
-    },
-    "ctaButton": {
-      "type": "component",
-      "component": "shared.cta-button",
       "repeatable": false
     },
     "copyRight": {
